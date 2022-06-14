@@ -1,7 +1,9 @@
 # minishell
 
 ## links
-
+https://russianblogs.com/article/24991572048/  
+https://harm-smits.github.io/42docs/projects/minishell  
+https://adrienblanc.com/projects/42/minishell  
 
 
 ## video
