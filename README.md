@@ -1,5 +1,18 @@
 ## minishell
 
+### features
+`pipes`, `semicolons`, `escape sequences`, `enviroment variables`, `$?`, `~`, `redirections: > >> <`
+
+Builtins: `cd`, `pwd`, `echo`, `export`, `unset`, `env`, `exit`.
+
+Signals: `Ctrl-C`, `Ctrl-\`, `Ctrl-D`.
+
+Parser opens quotes `'` `"` like in bash and handles `\` even in `'` `"` different context.
+
+Commands work with absolute and relative paths.
+
+Minishell writes errors to 2, output to 1 and prompt to 0. Acts as bash.
+
 ### links
 https://russianblogs.com/article/24991572048/  
 https://harm-smits.github.io/42docs/projects/minishell  
