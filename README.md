@@ -15,8 +15,15 @@ Minishell writes errors to 2, output to 1 and prompt to 0. Acts as bash.
 
 ### links
 https://russianblogs.com/article/24991572048/  
+[readline russianblogs](https://russianblogs.com/article/7614321785/)  
+[tutorial termcap](https://docs.google.com/document/d/1OzX0XRMcIUvCoE5ZTidod0K6yN3Kfs0wH0k-jTz45Lk/edit)  
+[terminal ](https://ejudge.ru/study/3sem/term.pdf)  
 https://harm-smits.github.io/42docs/projects/minishell  
 https://adrienblanc.com/projects/42/minishell  
+
+### guide
+[guide eLEGIJA](https://github.com/eLEGIJA/minishell)  
+[guide Ukio-G](https://github.com/Ukio-G/minishell/blob/master/doc.md)  
 
 
 ### video
