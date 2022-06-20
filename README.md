@@ -21,6 +21,10 @@ https://russianblogs.com/article/24991572048/
 https://harm-smits.github.io/42docs/projects/minishell  
 https://adrienblanc.com/projects/42/minishell  
 
+### docs
+[GNU libc](https://www.gnu.org/software/libc/manual/)  
+[GNU bash](https://www.gnu.org/software/bash/manual/)  
+
 ### guide
 [guide eLEGIJA](https://github.com/eLEGIJA/minishell)  
 [guide Ukio-G](https://github.com/Ukio-G/minishell/blob/master/doc.md)  
