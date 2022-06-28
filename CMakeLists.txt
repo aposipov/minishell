@@ -9,4 +9,6 @@ add_subdirectory(./libft)
 
 add_executable(minishell src/main.c)
 
+set(CMAKE_C_FLAGS  "-lreadline" )
+
 target_link_libraries(minishell libft)
