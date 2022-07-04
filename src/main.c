@@ -2,35 +2,63 @@
 // Created by user on 27.06.22.
 //
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <signal.h>
-#include "my_colours.h"
-#include <readline/readline.h>
-//#include <readline/history.h>
+#include "minishell.h"
 
+int check_env(char const *line)
+{
+	char *str = "env";
+	int i = 0;
 
-int main(int argc, char **argv, char **env)
+	while (line[i] != '\0')
+	{
+		if (line[i] == str[i])
+			i++;
+		else
+			return (0);
+	}
+	return (1);
+}
+
+void loop(char **env)
 {
 	char *line;
 	int i = 0;
-	//signal(SIGINT, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN);
-	printf("argc = %d\n", argc);
-	printf("argv = %s\n", argv[1]);
-	while(env[i])
-	{
-		printf("env = %s\n", env[i]);
-		i++;
-	}
+
 	while(1)
 	{
-//		signal(SIGINT, SIG_IGN);
 		line = readline(GREEN"minishell$ "NC);
+		if (check_env(line))
+		{
+			while(env[i])
+			{
+				printf("%s\n", env[i]);
+				i++;
+			}
+		}
+
 		printf(GREEN"minishell$ "NC);
 		printf("%s\n",line);
 		free(line);
 	}
-	printf("%s\n", getenv(argv[1]));
-	return 0;
+	//return 0;
+
+}
+
+int check_mshell(int  argc)
+{
+	if (argc != 1)
+		printf(RED"No input argements!\n"NC);
+	return (0);
+}
+
+int main(int argc, char **argv, char **env)
+{
+	(void)argv; //
+	(void)env;  //
+	check_mshell(argc);
+	loop(env);
+//	char *line;
+//	line = getenv("PATH");
+//	printf("%s\n", line);
+	return (0);
 }
