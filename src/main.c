@@ -4,6 +4,11 @@
 
 #include "minishell.h"
 
+//void rl()
+//{
+//
+//}
+
 int check_env(char const *line)
 {
 	char *str = "env";
