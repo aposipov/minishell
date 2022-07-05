@@ -9,6 +9,10 @@ int check_env(char const *line)
 	char *str = "env";
 	int i = 0;
 
+	if (line[i] == ' ')
+		printf ("is space\n");
+	if (line[i] == '\t')
+		printf ("is tab\n");
 	while (line[i] != '\0')
 	{
 		if (line[i] == str[i])
@@ -37,7 +41,7 @@ void loop(char **env)
 		}
 
 		printf(GREEN"minishell$ "NC);
-		printf("%s\n",line);
+		printf("%s\n", line);
 		free(line);
 	}
 	//return 0;
