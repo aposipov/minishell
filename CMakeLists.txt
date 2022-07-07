@@ -9,8 +9,9 @@ add_subdirectory(./libft)
 
 add_executable(minishell
 		src/main.c
-		src/0_init/input.c
-		src/0_init/signals.c)
+		src/0_init/input.c src/0_init/signals.c
+		src/1_parser/parsing.c
+		)
 
 set(CMAKE_C_FLAGS  "-lreadline" )
 
