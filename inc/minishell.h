@@ -14,8 +14,8 @@
 # include <readline/history.h>
 
 int	get_input();
-void loop(char **env);
-
+int loop(char **env);
+int	pre_parser(char const *line);
 
 
 void	init_signals(void);

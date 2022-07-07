@@ -22,4 +22,4 @@ add_library(libft ./src/ft_isalpha.c ./src/ft_isdigit.c ./src/ft_isalnum.c
 		./src/ft_lstsize_bonus.c ./src/ft_lstlast_bonus.c
 		./src/ft_lstadd_back_bonus.c ./src/ft_lstdelone_bonus.c
 		./src/ft_lstclear_bonus.c ./src/ft_lstiter_bonus.c
-		./src/ft_lstmap_bonus.c)
+		./src/ft_lstmap_bonus.c src/ft_isspace.c)

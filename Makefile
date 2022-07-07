@@ -10,7 +10,9 @@ INCFLAG = 	-I ./inc/\
 HEADER = 	./inc/
 
 SRC = 		./src/main.c\
-			./src/0_init/input.c ./src/0_init/signals.c
+			./src/0_init/input.c ./src/0_init/signals.c\
+			./src/1_parser/parsing.c\
+
 
 OBJ = 		$(patsubst %.c, %.o, $(SRC))
 

@@ -46,16 +46,36 @@ int check_env(char const *line)
 	return (1);
 }
 
-void loop(char **env)
+int loop(char **env)
 {
 	char *line;
 	int i = 0;
 	(void)env;
 
-	while(1)
+	while (1)
 	{
 		//get_input();
 		line = readline(GREEN"minishell$ "NC);
+		if (!line)
+		{
+			write (1, "exit\n", 5);
+			//clear_exit(0);
+		}
+		add_history(line);
+		if (pre_parser(line) != -1)
+			printf("after preparser\n");
+			//parser(input);
+//		else
+//			printf(GREEN"minishell$ "NC);
+//		if (ft_strlen(line) == 0)
+//		{
+//			//try_free(input);
+//			line = NULL;
+//			return (1);
+//		}
+
+
+
 		if (check_env(line))
 		{
 			while(env[i])
