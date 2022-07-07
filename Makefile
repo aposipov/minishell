@@ -9,7 +9,8 @@ INCFLAG = 	-I ./inc/\
  			-I ./libft/inc
 HEADER = 	./inc/
 
-SRC = 		./src/main.c
+SRC = 		./src/main.c\
+			./src/0_init/input.c ./src/0_init/signals.c
 
 OBJ = 		$(patsubst %.c, %.o, $(SRC))
 

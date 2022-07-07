@@ -13,6 +13,11 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-//# include
+int	get_input();
+void loop(char **env);
+
+
+
+void	init_signals(void);
 
 #endif

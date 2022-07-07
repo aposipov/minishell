@@ -4,60 +4,13 @@
 
 #include "minishell.h"
 
-//void rl()
-//{
-// test message
-//
-//}
-
-int check_env(char const *line)
-{
-	char *str = "env";
-	int i = 0;
-
-	if (line[i] == ' ')
-		printf ("is space\n");
-	if (line[i] == '\t')
-		printf ("is tab\n");
-	while (line[i] != '\0')
-	{
-		if (line[i] == str[i])
-			i++;
-		else
-			return (0);
-	}
-	return (1);
-}
-
-void loop(char **env)
-{
-	char *line;
-	int i = 0;
-
-	while(1)
-	{
-		line = readline(GREEN"minishell$ "NC);
-		if (check_env(line))
-		{
-			while(env[i])
-			{
-				printf("%s\n", env[i]);
-				i++;
-			}
-		}
-
-		printf(GREEN"minishell$ "NC);
-		printf("%s\n", line);
-		free(line);
-	}
-	//return 0;
-
-}
-
 int check_mshell(int  argc)
 {
 	if (argc != 1)
+	{
 		printf(RED"No input argements!\n"NC);
+		return (1);
+	}
 	return (0);
 }
 
@@ -65,7 +18,9 @@ int main(int argc, char **argv, char **env)
 {
 	(void)argv; //
 	(void)env;  //
-	check_mshell(argc);
+	if (check_mshell(argc))
+		return (1);
+	init_signals();
 	loop(env);
 //	char *line;
 //	line = getenv("PATH");
