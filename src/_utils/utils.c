@@ -35,3 +35,22 @@ int	try_dup2(int fd, int fd2)
 		exit_error(strerror(errno), 1);
 	return (dupp);
 }
+
+char	*ft_strjoin_gnl(char *s1, char *s2)
+{
+	size_t	size;
+	char	*join;
+
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	size = ft_strlen(s1) + ft_strlen(s2) + 1;
+	join = malloc(size);
+	if (join == NULL)
+		return (NULL);
+	join[size - 1] = '\0';
+	ft_memcpy(join, s1, ft_strlen(s1));
+	ft_memcpy(join + ft_strlen(s1), s2, ft_strlen(s2));
+	free (s1);
+	s1 = NULL;
+	return (join);
+}

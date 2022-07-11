@@ -16,6 +16,8 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+//# include <dirent.h>
+//# include <sys/types.h>
 
 typedef struct s_command
 {
@@ -43,6 +45,14 @@ typedef struct s_shell
 	int		signal;
 }				t_shell;
 
+typedef struct s_pipex
+{
+	t_list	*cmd;
+	int		c_pipe;
+	int		iter;
+	int		flag;
+}			t_pipex;
+
 t_shell g_shell;
 
 int 	loop(char **env);
@@ -69,5 +79,6 @@ int	try_dup(int fd);
 int	try_dup2(int fd, int fd2);
 void	err_msg(char *str);
 void	sup_dup(int *fd);
+char	*ft_strjoin_gnl(char *s1, char *s2); // peredelat
 
 #endif
