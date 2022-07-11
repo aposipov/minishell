@@ -7,6 +7,8 @@
 
 # include "my_colours.h"
 # include "libft.h"
+# include <fcntl.h>
+# include <errno.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <signal.h>
@@ -53,5 +55,19 @@ void	pipe_handler(int *i);
 char	*other_handler(char const *input, int *i);
 char	*limiter_handler(char *rd, char *limiter);
 
+
+/*utils*/
+void	try_free(void *target);
+void	try_free3(void *a, void *b, void *c);
+char	**free_2d_arr(char **arr);
+void	exit_error(char *str, int code);
+void	cleaning(void);
+t_command *command_new(void);
+char **set_command_struct(t_list *lst_cmd);
+void	status_handler(void);
+int	try_dup(int fd);
+int	try_dup2(int fd, int fd2);
+void	err_msg(char *str);
+void	sup_dup(int *fd);
 
 #endif
