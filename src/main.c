@@ -4,7 +4,7 @@
 
 #include "minishell.h"
 
-int check_mshell(int  argc)
+static int check_args(int  argc)
 {
 	if (argc != 1)
 	{
@@ -18,9 +18,9 @@ int main(int argc, char **argv, char **env)
 {
 	(void)argv; //
 	(void)env;  //
-	if (check_mshell(argc))
+	if (check_args(argc))
 		return (1);
-	init_signals();
+	init_signals(); // check init
 	loop(env);
 //	char *line;
 //	line = getenv("PATH");

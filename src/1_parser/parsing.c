@@ -1,114 +1,80 @@
 //
-// Created by user on 07.07.22.
+// Created by user on 08.07.22.
 //
 
 #include "minishell.h"
 
-static int	lexer(const char *str, int *i)
+
+static int	set_arg(char *str, int *this_is_redirect)
 {
-	if (str[*i] == '|')
+	t_command	*tmp;
+	t_list		*new;
+
+	if (str == NULL)
+		exit_error("Malloc error", -1);
+	if (*this_is_redirect == 1)
 	{
-		while (ft_isspace(str[++(*i)]))
-			;
-		if (str[*i] == '\0' || str[*i] == '|')
-			return (-1);
+		*this_is_redirect = 0;
+		return (0);
 	}
-	if (str[*i] == '<' || str[*i] == '>')
-	{
+	if (ft_strlen(str) == 0)
+		return (-1);
+	tmp = (t_command *)ft_lstlast(g_shell.cmd)->content;
+	new = ft_lstnew((void *)str);
+	if (new == NULL)
+		exit_error("Malloc error", -1);
+	ft_lstadd_back(&tmp->argv, new);
+	return (0);
+}
+
+char	*other_handler(char const *input, int *i)
+{
+	int		j;
+	int		quote;
+
+	if (input[*i] == '\0')
+		return (ft_strdup(""));
+	while (ft_isspace(input[*i]))
 		(*i)++;
-		if (str[*i] != str[*i - 1] && (str[*i] == '<' || str[*i] == '>'))
-			return (-1);
-		if (str[*i] == str[*i - 1])
-			(*i)++;
-		while (ft_isspace(str[*i]))
-			(*i)++;
-		if (str[*i] == '\0' || str[*i] == '|' || \
-			str[*i] == '<' || str[*i] == '>')
-			return (-1);
-	}
-	return (0);
-}
-
-static int	check_second_quote(char quote, char const *input, int *i)
-{
-	(*i)++;
-	while (input[*i])
+	j = *i;
+	while (input[*i] != '<' && input[*i] != '>' && input[*i] != '|' && \
+		!ft_isspace(input[*i]) && input[*i])
 	{
-		if (input[*i] == quote)
-			return (*i);
+		if (input[*i] == '\'' || input[*i] == '\"')
+		{
+			quote = input[*i];
+			while (input[++(*i)] != quote)
+				;
+		}
 		(*i)++;
 	}
-	return (-1);
+	return (ft_substr(input, j, *i - j));
 }
 
-static int	check_invalid(char const *input)
+void	parser(char const *input)
 {
-	int	i;
+	int		i;
+	int		this_is_redirect;
+	char	*tmp;
 
 	i = 0;
-	while (input[i])
+	this_is_redirect = 0;
+	while (input[i] && input[i] != '|')
 	{
-		if (input[i] == '\"')
+		while (ft_isspace(input[i]))
+			i++;
+		if (input[i] == '<' || input[i] == '>')
+			tmp = double_redirect_handler(input, &i, &this_is_redirect);
+		else if (input[i] == '|')
 		{
-			if (check_second_quote('\"', input, &i) == -1)
-			{
-				ft_putendl_fd("Syntax error expected second \"", 2);
-				return (-1);
-			}
+			pipe_handler(&i);
+			continue ;
 		}
-		if (input[i] == '\'')
-		{
-			if (check_second_quote('\'', input, &i) == -1)
-			{
-				ft_putendl_fd("Syntax error expected second \'", 2);
-				return (-1);
-			}
-		}
-		i++;
+		else
+			tmp = other_handler(input, &i);
+		if (g_shell.signal != 0)
+			return ;
+		if (set_arg(tmp, &this_is_redirect) == -1)
+			try_free(tmp);
 	}
-	return (0);
-}
-
-static int	check_begin(char const *input)
-{
-	int	i;
-
-	i = 0;
-	while (ft_isspace(input[i]))
-		i++;
-	if (input[i] == '\0')
-		return (-1);
-	if (input[i] == '|')
-	{
-		ft_putendl_fd("Syntax error near unexpected token `|'", 2);
-		return (-1);
-	}
-	if (input[i] == ';')
-	{
-		ft_putendl_fd("Syntax error near unexpected token `;'", 2);
-		return (-1);
-	}
-	i = check_invalid(input);
-	return (i);
-}
-
-int	pre_parser(char const *line)
-{
-	int	i;
-
-	i = 0;
-	if (check_begin(line) == -1)
-		return (-1);
-	while (line[i])
-	{
-		if (line[i] == '\'' || line[i] == '\"')
-			check_second_quote(line[i], line, &i);
-		if (lexer(line, &i) == -1)
-		{
-			ft_putendl_fd("Syntax error near unexpected token", 2);
-			return (-1);
-		}
-		i++;
-	}
-	return (0);
 }

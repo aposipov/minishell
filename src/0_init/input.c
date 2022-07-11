@@ -27,7 +27,7 @@ int	get_input()
 	return (0);
 }
 
-int check_env(char const *line)
+static int check_env(char const *line)
 {
 	char *str = "env";
 	int i = 0;
@@ -51,6 +51,9 @@ int loop(char **env)
 	char *line;
 	int i = 0;
 	(void)env;
+//	char *str;
+//	str = getenv("PATH");
+//	printf("%s\n", str);
 
 	while (1)
 	{
@@ -58,13 +61,16 @@ int loop(char **env)
 		line = readline(GREEN"minishell$ "NC);
 		if (!line)
 		{
-			write (1, "exit\n", 5);
+			write(1, "exit\n", 5);
 			//clear_exit(0);
 		}
 		add_history(line);
 		if (pre_parser(line) != -1)
+		{
 			printf("after preparser\n");
-			//parser(input);
+			//getenv(PATH);
+			parser(line);
+		}
 //		else
 //			printf(GREEN"minishell$ "NC);
 //		if (ft_strlen(line) == 0)
@@ -90,6 +96,4 @@ int loop(char **env)
 		free(line);
 	}
 	//return 0;
-
 }
-

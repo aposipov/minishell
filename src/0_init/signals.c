@@ -6,7 +6,7 @@
 
 /* C-D how it should work? */
 
-void	int_handler(int siq)
+static void	int_handler(int siq)
 {
 	(void)siq;
 //	if (sig == SIGINT)
@@ -31,7 +31,7 @@ void	int_handler(int siq)
 	rl_redisplay();
 }
 
-void	quit_handler(int sig)
+static void	quit_handler(int sig)
 {
 	(void)sig;
 //	if (sig == SIGQUIT)
