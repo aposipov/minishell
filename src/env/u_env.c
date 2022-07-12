@@ -4,6 +4,20 @@
 
 #include "minishell.h"
 
+
+static int	env_size(t_env *env)
+{
+	int	i;
+
+	i = 0;
+	while (env)
+	{
+		i++;
+		env = env->next;
+	}
+	return (i);
+}
+
 static char	*str_create(t_env *env)
 {
 	char	*str;
@@ -91,15 +105,4 @@ void	start_pwd(t_env *env)
 	}
 }
 
-static int	env_size(t_env *env)
-{
-	int	i;
 
-	i = 0;
-	while (env)
-	{
-		i++;
-		env = env->next;
-	}
-	return (i);
-}

@@ -19,7 +19,8 @@ static int	set_redirect(char *str)
 	return (0);
 }
 
-static char	*redirect_handler(char const *input, int *i, int *this_is_redirect)
+static char	*redirect_handler(char const *input, int *i, int const
+*this_is_redirect)
 {
 	char	*redirect;
 	char	*tmp;

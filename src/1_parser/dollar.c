@@ -4,6 +4,33 @@
 
 #include "minishell.h"
 
+static char	*find_env(char *str)
+{
+	char	**env;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = (int)ft_strlen(str);
+	env = g_shell.env;
+	if (str[0] == '?')
+	{
+		try_free(str);
+		return (ft_itoa(g_shell.result));
+	}
+	while (env && env[i])
+	{
+		if (ft_strncmp(env[i], str, j) == 0)
+		{
+			try_free(str);
+			return (ft_strdup(env[i] + j));
+		}
+		i++;
+	}
+	try_free(str);
+	return (ft_strdup(""));
+}
+
 char	*dollar(char *input, int *i)
 {
 	char	*tmp;
@@ -31,31 +58,4 @@ char	*dollar(char *input, int *i)
 		exit_error("Malloc error", -1);
 	try_free3(input, tmp2, tmp3);
 	return (tmp);
-}
-
-static char	*find_env(char *str)
-{
-	char	**env;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = (int)ft_strlen(str);
-	env = g_shell.env;
-	if (str[0] == '?')
-	{
-		try_free(str);
-		return (ft_itoa(g_shell.result));
-	}
-	while (env && env[i])
-	{
-		if (ft_strncmp(env[i], str, j) == 0)
-		{
-			try_free(str);
-			return (ft_strdup(env[i] + j));
-		}
-		i++;
-	}
-	try_free(str);
-	return (ft_strdup(""));
 }

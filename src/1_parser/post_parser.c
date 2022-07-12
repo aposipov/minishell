@@ -28,27 +28,28 @@ void	who_is_your_daddy(void)
 	}
 }
 
-char	*clear_quotes(char *input)
-{
-	int		i;
-	char	*str;
 
-	i = 0;
-	str = ft_strdup(input);
-	if (str == NULL)
+
+static char	*quote_helper(char *tmp_str2, int quote)
+{
+	int	j;
+
+	if (tmp_str2 == NULL)
 		exit_error("Malloc error", -1);
-	while (str && str[i])
+	if (quote == 34)
 	{
-		if (str[i] == '\'' || str[i] == '\"')
-			str = quote_handler(str, str[i], &i);
-		else if (str[i] == '$')
-			str = dollar(str, &i);
-		else
-			i++;
+		j = 0;
+		while (tmp_str2 != NULL && tmp_str2[j])
+		{
+			if (tmp_str2[j] == '$')
+				tmp_str2 = dollar(tmp_str2, &j);
+			else
+				j++;
+			if (tmp_str2 == NULL)
+				exit_error("Malloc error", -1);
+		}
 	}
-	if (str == NULL)
-		exit_error("Malloc error", -1);
-	return (str);
+	return (tmp_str2);
 }
 
 static char	*quote_handler(char *input, int quote, int *i)
@@ -76,24 +77,25 @@ static char	*quote_handler(char *input, int quote, int *i)
 	return (tmp_str);
 }
 
-static char	*quote_helper(char *tmp_str2, int quote)
+char	*clear_quotes(char *input)
 {
-	int	j;
+	int		i;
+	char	*str;
 
-	if (tmp_str2 == NULL)
+	i = 0;
+	str = ft_strdup(input);
+	if (str == NULL)
 		exit_error("Malloc error", -1);
-	if (quote == 34)
+	while (str && str[i])
 	{
-		j = 0;
-		while (tmp_str2 != NULL && tmp_str2[j])
-		{
-			if (tmp_str2[j] == '$')
-				tmp_str2 = dollar(tmp_str2, &j);
-			else
-				j++;
-			if (tmp_str2 == NULL)
-				exit_error("Malloc error", -1);
-		}
+		if (str[i] == '\'' || str[i] == '\"')
+			str = quote_handler(str, str[i], &i);
+		else if (str[i] == '$')
+			str = dollar(str, &i);
+		else
+			i++;
 	}
-	return (tmp_str2);
+	if (str == NULL)
+		exit_error("Malloc error", -1);
+	return (str);
 }

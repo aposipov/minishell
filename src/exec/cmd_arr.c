@@ -50,10 +50,10 @@ static void	cmd_func(int cmd, char **cmd_ex)
 
 int	builtins(char **cmd)
 {
-	int	i;
+	//int	i;
 	int	j;
 
-	i = -1;
+	//i = -1;
 	if (cmd != NULL)
 	{
 		j = get_cmd_char(cmd[0]);
