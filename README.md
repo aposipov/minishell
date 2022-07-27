@@ -24,6 +24,7 @@ https://adrienblanc.com/projects/42/minishell
 ### docs
 [GNU libc](https://www.gnu.org/software/libc/manual/)  
 [GNU bash](https://www.gnu.org/software/bash/manual/)  
+[GNU termcap](https://www.gnu.org/software/termutils/manual/termcap-1.3/html_mono/termcap.html)
 
 ### guide
 [guide eLEGIJA](https://github.com/eLEGIJA/minishell)  
