@@ -13,8 +13,8 @@ void	err_msg(char *str)
 
 void	sup_dup(int *fd)
 {
-	try_dup2(fd[1], 1);
-	try_dup2(fd[0], 0);
+	tdup2(fd[1], 1);
+	tdup2(fd[0], 0);
 	close(fd[0]);
 	close(fd[1]);
 }

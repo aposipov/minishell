@@ -7,7 +7,7 @@
 void	edit_pwd(t_env *env, char *pwd, char *oldpwd)
 {
 	if (!find_list_env(env, "OLDPWD"))
-		add_back_env(&g_shell.new_env, new_env("OLDPWD", 1, 1));
+		add_back_env(&g_shell.new_env, new_env("OLDPWD", 1, 1)); // exp 1
 	edit_env_line(env, "PWD", pwd);
 	edit_env_line(env, "OLDPWD", oldpwd);
 }

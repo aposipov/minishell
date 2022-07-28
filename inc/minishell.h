@@ -25,12 +25,12 @@ typedef struct s_command
 	t_list	*redirect;
 }				t_command;
 
-typedef struct s_env
+typedef struct s_env // int exp
 {
 	char			*key;
 	char			*value;
 	int				env;
-	int				exp;
+	int 			exp;
 	struct s_env	*next;
 }				t_env;
 
@@ -58,7 +58,7 @@ extern t_shell g_shell;
 //int 	loop(char **env);
 int		pre_parser(char const *line);
 void	parser(char const *input);
-//void	init_signals(void);
+void	init_signals(void);
 char	*double_redirect_handler(char const *input, int *i, int
 *this_is_redirect);
 void	pipe_handler(int *i);
@@ -66,23 +66,23 @@ char	*other_handler(char const *input, int *i);
 char	*limiter_handler(char *rd, char *limiter);
 char	*clear_quotes(char *input);
 char	*dollar(char *input, int *i);
-void	who_is_your_daddy(void);
+void	tparent(void);
 
 
 /*utils*/
-void	try_free(void *target);
-void	try_free3(void *a, void *b, void *c);
-char	**free_2d_arr(char **arr);
-void	exit_error(char *str, int code);
-void	cleaning(void);
-t_command *command_new(void);
-char **set_command_struct(t_list *lst_cmd);
-void	status_handler(void);
-int	try_dup(int fd);
-int	try_dup2(int fd, int fd2);
-void	err_msg(char *str);
-void	sup_dup(int *fd);
-char	*ft_strjoin_gnl(char *s1, char *s2); // peredelat
+void		try_free(void *target);
+void		try_free3(void *a, void *b, void *c);
+char		**free_2d_arr(char **arr);
+void		exit_error(char *str, int code);
+void		cleaning(void);
+t_command 	*command_new(void);
+char 		**set_command_struct(t_list *lst_cmd);
+void		status_handler(void);
+int			tdup(int fd);
+int			tdup2(int fd, int fd2);
+void		err_msg(char *str);
+void		sup_dup(int *fd);
+char		*ft_strjoin_gnl(char *s1, char *s2); // peredelat
 
 // builtins
 void		ft_pwd(char **argv);
@@ -95,7 +95,7 @@ void		ft_exit(char **argv);
 
 // env
 t_env		*init_env(char **env);
-t_env		*new_env(char *str, int env, int exp);
+t_env		*new_env(char *str, int env, int exp); // int exp
 void		add_back_env(t_env **env, t_env *new);
 void		logic_export(int *flags, int i, t_env *env, char *arg);
 t_env		*find_list_env(t_env *env, char *str);

@@ -16,7 +16,7 @@ void	status_handler(void)
 	}
 }
 
-int	try_dup(int fd)
+int	tdup(int fd)
 {
 	int	dupp;
 
@@ -26,7 +26,7 @@ int	try_dup(int fd)
 	return (dupp);
 }
 
-int	try_dup2(int fd, int fd2)
+int	tdup2(int fd, int fd2)
 {
 	int	dupp;
 

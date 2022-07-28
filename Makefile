@@ -10,9 +10,10 @@ INCFLAG = 	-I ./inc/\
 HEADER = 	./inc/
 
 SRC = 		src/main.c\
-            src/1_parser/pre_parsing.c src/1_parser/parsing.c src/1_parser/pipe_redirect.c\
-            src/1_parser/limiter.c src/1_parser/post_parser.c src/1_parser/dollar.c\
-            src/_utils/cleaning.c src/_utils/srt_cmd.c src/_utils/support.c src/_utils/utils.c\
+			src/init/signals.c\
+            src/parser/pre_parsing.c src/parser/parsing.c src/parser/pipe_redirect.c\
+            src/parser/limiter.c src/parser/post_parser.c src/parser/dollar.c\
+            src/utils/cleaning.c src/utils/srt_cmd.c src/utils/support.c src/utils/utils.c\
             src/env/export_env.c src/env/init_env.c src/env/u_env.c\
             src/pipe/pipes.c src/pipe/u_pipes.c\
             src/exec/exec.c src/exec/cmd_arr.c\
@@ -30,7 +31,7 @@ NC= \033[0;0m
 all:		$(LIBFT_A) $(NAME)
 
 $(NAME):	$(OBJ)
-			$(CC) $(CFLAGS) $(FLAGS) $(OBJ) $(LIBFT_A) -o $(NAME)
+			$(CC) $(CFLAGS) $(OBJ) $(LIBFT_A) $(FLAGS) -o $(NAME)
 			@echo -e "$(GREEN)\t\n Minishel compiled! \n $(NC)"
 
 $(LIBFT_A):

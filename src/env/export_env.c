@@ -35,7 +35,7 @@ static void	export_plus(t_env *env, char *key, char *value)
 	tmp = find_list_env(env, key);
 	if (!tmp)
 	{
-		add_back_env(&g_shell.new_env, new_env(key, 1, 1));
+		add_back_env(&g_shell.new_env, new_env(key, 1, 1)); // exp 1
 		tmp = find_list_env(env, key);
 	}
 	if (value)
@@ -50,7 +50,7 @@ static void	export_plus(t_env *env, char *key, char *value)
 	if (tmp->value == NULL)
 		exit_error("Malloc error", -1);
 	tmp->env = 1;
-	tmp->exp = 1;
+	//tmp->exp = 1;
 }
 
 void	logic_export(int *flags, int i, t_env *env, char *arg)
@@ -69,11 +69,11 @@ void	logic_export(int *flags, int i, t_env *env, char *arg)
 	else if (f_plus)
 		export_plus(env, key, value);
 	else if (f_eq)
-		add_back_env(&g_shell.new_env, new_env(arg, 1, 1));
+		add_back_env(&g_shell.new_env, new_env(arg, 1, 1)); // exp 1
 	else if (!f_eq && find_list_env(env, key))
 		NULL;
 	else
-		add_back_env(&g_shell.new_env, new_env(arg, 0, 1));
+		add_back_env(&g_shell.new_env, new_env(arg, 0, 1)); // exp 1
 	try_free(key);
 	try_free(value);
 }

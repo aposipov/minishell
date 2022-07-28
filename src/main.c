@@ -4,52 +4,39 @@
 
 #include "minishell.h"
 
-//static int check_args(int  argc)
-//{
-//	if (argc != 1)
-//	{
-//		printf(RED"No input argements!\n"NC);
-//		return (1);
-//	}
-//	return (0);
-//}
-//
-//int main(int argc, char **argv, char **env)
-//{
-//	(void)argv; //
-//	(void)env;  //
-//	if (check_args(argc))
-//		return (1);
-//	init_signals(); // check init
-//	loop(env);
-//	char *line;
-//	line = getenv("PATH");
-//	printf("%s\n", line);
-//	return (0);
-//}
-
 t_shell  g_shell = {}; //
 
-void	ctrl_c(int signal)
+static int check_args(int  argc)
 {
-	if (signal == SIGINT)
+	if (argc != 1)
 	{
-		ft_putchar_fd('\n', 2);
-		rl_replace_line("", 2);
-		rl_on_new_line();
-		rl_redisplay();
-		g_shell.result = signal - 1;
+		printf(RED"No input argements!\n"NC);
+		return (1);
 	}
+	return (0);
 }
+
+//void	ctrl_c(int signal)
+//{
+//	if (signal == SIGINT)
+//	{
+//		ft_putchar_fd('\n', 2);
+//		rl_replace_line("", 2);
+//		rl_on_new_line();
+//		rl_redisplay();
+//		g_shell.result = signal - 1;
+//	}
+//}
 
 static int	parsing(void)
 {
 	char	*input;
 
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, &ctrl_c);
+	//signal(SIGQUIT, SIG_IGN);
+	//signal(SIGINT, &ctrl_c);
+	init_signals();
 	g_shell.signal = 0;
-	input = readline("minishell$ ");
+	input = readline(GREEN"minishell$ "NC);
 	if (!input)
 		return (-1);
 	if (ft_strlen(input) == 0)
@@ -82,8 +69,8 @@ static void	init_shell(int argc, char **argv, char **env)
 	start_pwd(g_shell.new_env);
 	edit_shlvl(g_shell.new_env);
 	g_shell.result = 0;
-	g_shell.fd_1 = try_dup(1);
-	g_shell.fd_0 = try_dup(0);
+	g_shell.fd_1 = tdup(1);
+	g_shell.fd_0 = tdup(0);
 	new = command_new();
 	new_list = ft_lstnew((void *)new);
 	if (new_list == NULL)
@@ -97,7 +84,9 @@ int	main(int argc, char **argv, char **env)
 {
 	int	status;
 
-	//rl_outstream = stderr;
+	//rl_outstream = stderr; //WHY?
+	if(check_args(argc))
+		exit(1);
 	init_shell(argc, argv, env);
 	while (1)
 	{
@@ -114,9 +103,9 @@ int	main(int argc, char **argv, char **env)
 			if (ft_lstsize(g_shell.cmd) > 1)
 				pipes(ft_lstsize(g_shell.cmd));
 			else
-				who_is_your_daddy();
-			try_dup2(g_shell.fd_1, 1);
-			try_dup2(g_shell.fd_0, 0);
+				tparent();
+			tdup2(g_shell.fd_1, 1);
+			tdup2(g_shell.fd_0, 0);
 		}
 		cleaning();
 	}

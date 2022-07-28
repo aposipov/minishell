@@ -47,8 +47,8 @@ static int redirect_create(t_list *tmp)
 	char *str;
 	int fd[2];
 
-	fd[0] = try_dup(0);
-	fd[1] = try_dup(1);
+	fd[0] = tdup(0);
+	fd[1] = tdup(1);
 	if (tmp)
 	{
 		while (tmp)

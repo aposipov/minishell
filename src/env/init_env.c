@@ -22,35 +22,7 @@ static void	set_new_env(t_env *new, char *str, int j)
 	new->next = NULL;
 }
 
-t_env	*init_env(char **env)
-{
-	int		i;
-	char	*str;
-	t_env	*envs;
-	t_env	*new;
-
-	i = 0;
-	if (env != NULL && env[0] != NULL)
-	{
-		str = ft_strdup(env[i]);
-		if (str == NULL)
-			exit_error("Malloc error", -1);
-		envs = new_env(str, 1, 1);
-		free(str);
-	}
-	while (env[++i])
-	{
-		str = ft_strdup(env[i]);
-		if (str == NULL)
-			exit_error("Malloc error", -1);
-		new = new_env(str, 1, 1);
-		add_back_env(&envs, new);
-		free(str);
-	}
-	return (envs);
-}
-
-t_env	*new_env(char *str, int env, int exp)
+t_env	*new_env(char *str, int env, int exp) // int exp
 {
 	int		i;
 	int		j;
@@ -102,7 +74,7 @@ void	edit_env_line(t_env *env, char *find, char *edit)
 	tmp = find_list_env(env, find);
 	if (tmp == NULL)
 	{
-		tmp = new_env(find, 0, 1);
+		tmp = new_env(find, 0, 1); // exp 1
 		if (tmp == NULL)
 			exit_error("Error Malloc", -1);
 		add_back_env(&g_shell.new_env, tmp);
@@ -116,4 +88,32 @@ void	edit_env_line(t_env *env, char *find, char *edit)
 		if (tmp->value == NULL)
 			exit_error("Error Malloc", -1);
 	}
+}
+
+t_env	*init_env(char **env)
+{
+	int		i;
+	char	*str;
+	t_env	*envs;
+	t_env	*new;
+
+	i = 0;
+	if (env != NULL && env[0] != NULL)
+	{
+		str = ft_strdup(env[i]);
+		if (str == NULL)
+			exit_error("Malloc error", -1);
+		envs = new_env(str, 1, 1); // exp 1
+		free(str);
+	}
+	while (env[++i])
+	{
+		str = ft_strdup(env[i]);
+		if (str == NULL)
+			exit_error("Malloc error", -1);
+		new = new_env(str, 1, 1); // exp
+		add_back_env(&envs, new);
+		free(str);
+	}
+	return (envs);
 }

@@ -4,7 +4,7 @@
 
 #include "minishell.h"
 
-void	who_is_your_daddy(void)
+void	tparent(void)
 {
 	pid_t	pid;
 	char	**cmd;

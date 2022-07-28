@@ -9,21 +9,21 @@ static void	child(int flag, t_pipex *pipex, int *a, int *b)
 	if (!flag && pipex->iter == 0)
 	{
 		close(a[0]);
-		try_dup2(a[1], 1);
+		tdup2(a[1], 1);
 		close(a[1]);
 	}
 	else if (!flag)
 	{
-		try_dup2(b[0], 0);
+		tdup2(b[0], 0);
 		close(a[0]);
-		try_dup2(a[1], 1);
+		tdup2(a[1], 1);
 	}
 	else if (flag)
 	{
-		try_dup2(a[0], 0);
+		tdup2(a[0], 0);
 		close(a[0]);
 		close(b[0]);
-		try_dup2(b[1], 1);
+		tdup2(b[1], 1);
 	}
 }
 
@@ -61,9 +61,9 @@ static void	procces_pipe(t_pipex *pipex, int *a, int *b, pid_t *pid)
 		if (!pipex->cmd->next)
 		{
 			if (!pipex->flag)
-				try_dup2(b[0], 0);
+				tdup2(b[0], 0);
 			else
-				try_dup2(a[0], 0);
+				tdup2(a[0], 0);
 			executing(pipex->cmd);
 		}
 		else
