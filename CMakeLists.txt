@@ -19,8 +19,6 @@ add_executable(minishell
 		src/cmd/cd.c src/cmd/echo.c src/cmd/env.c
 		src/cmd/exit.c src/cmd/export.c src/cmd/pwd.c src/cmd/unset.c)
 
-set(CMAKE_C_FLAGS  "-lreadline"
-		#"-ltermcap"
-		)
+set(CMAKE_C_FLAGS  "-lreadline")
 
 target_link_libraries(minishell libft)

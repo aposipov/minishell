@@ -32,7 +32,7 @@ typedef struct s_command
 	t_list	*redirect;
 }				t_command;
 
-typedef struct s_env // int exp
+typedef struct s_env
 {
 	char			*key;
 	char			*value;
@@ -96,7 +96,7 @@ void		ft_env(char **argv);
 void		ft_exit(char **argv);
 /* env */
 t_env		*init_env(char **env);
-t_env		*new_env(char *str, int env); // int exp
+t_env		*new_env(char *str, int env);
 void		add_back_env(t_env **env, t_env *new);
 void		logic_export(int *flags, int i, t_env *env, char *arg);
 t_env		*find_list_env(t_env *env, char *str);
