@@ -87,5 +87,3 @@ char	*double_redirect_handler(char const *input, int *i, \
 	}
 	return (redirect_handler(input, i, this_is_redirect));
 }
-
-

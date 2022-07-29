@@ -66,4 +66,3 @@ char	*limiter_handler(char *rd, char *limiter)
 		exit_error("Malloc error", -1);
 	return (limiter);
 }
-

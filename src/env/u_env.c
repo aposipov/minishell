@@ -12,7 +12,6 @@
 
 #include "minishell.h"
 
-
 static int	env_size(t_env *env)
 {
 	int	i;
@@ -112,5 +111,3 @@ void	start_pwd(t_env *env)
 		try_free(pwd);
 	}
 }
-
-

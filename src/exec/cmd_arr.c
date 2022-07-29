@@ -60,10 +60,9 @@ int	builtins(char **cmd)
 {
 	int	j;
 
-	//j = -1; // was i
 	if (cmd != NULL)
 	{
-		j = get_cmd_char(cmd[0]); // cmd[0]
+		j = get_cmd_char(cmd[0]);
 		if (j != -1)
 		{
 			cmd_func(j, cmd);

@@ -89,7 +89,7 @@ void		err_msg(char *str);
 void		sup_dup(int *fd);
 char		*mod_strjoin_gnl(char *s1, char *s2); // peredelat
 
-// builtins
+/* builtins */
 void		ft_pwd(char **argv);
 void		ft_echo(char **argv);
 void		ft_cd(char **argv);
@@ -98,7 +98,7 @@ void		ft_export(char **argv);
 void		ft_env(char **argv);
 void		ft_exit(char **argv);
 
-// env
+/* env */
 t_env		*init_env(char **env);
 t_env		*new_env(char *str, int env, int exp); // int exp
 void		add_back_env(t_env **env, t_env *new);
@@ -110,11 +110,11 @@ void		export_get_value(char *arg, int i, char **value, int f_plus);
 void		edit_env_line(t_env *env, char *find, char *edit);
 char		**env_arr(t_env *env, int export);
 
-// exec
+/* exec */
 void		executing(t_list *lst_cmd);
 int			builtins(char **cmd);
 
-// pipes
+/* pipes */
 void		pipes(int argc);
 pid_t		*init_pipes(int argc, t_pipex *pipex, int *a, int *b);
 void		closer_pipes(int *a, int *b);

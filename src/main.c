@@ -12,9 +12,9 @@
 
 #include "minishell.h"
 
-t_shell	g_shell = {}; // gv
+t_shell	g_shell = {};
 
-static int	check_args(int  argc)
+static int	check_args(int argc)
 {
 	if (argc != 1)
 	{
@@ -53,7 +53,6 @@ static void	init_shell(int argc, char **argv, char **env)
 	t_command	*new;
 	t_list		*new_list;
 
-	//(void)argc;
 	(void)argv;
 	if (check_args(argc))
 		exit(1);

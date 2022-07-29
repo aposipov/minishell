@@ -17,7 +17,7 @@ static int	lexer(const char *str, int *i)
 	if (str[*i] == '|')
 	{
 		while (ft_isspace(str[++(*i)]))
-			// ;
+			;
 		if (str[*i] == '\0' || str[*i] == '|')
 			return (-1);
 	}

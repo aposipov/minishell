@@ -36,8 +36,6 @@ void	tparent(void)
 	}
 }
 
-
-
 static char	*quote_helper(char *tmp_str2, int quote)
 {
 	int	j;

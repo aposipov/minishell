@@ -123,11 +123,5 @@ t_env	*init_env(char **env)
 		add_back_env(&envs, new);
 		free(str);
 	}
-//	t_env *tmp = envs;
-//	while (envs) // check loop print env
-//	{
-//		printf("key = %s, value = %s\n", envs->key, envs->value );
-//		envs = envs->next;
-//	}
 	return (envs);
 }
