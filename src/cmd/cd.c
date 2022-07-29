@@ -15,7 +15,7 @@
 void	edit_pwd(t_env *env, char *pwd, char *oldpwd)
 {
 	if (!find_list_env(env, "OLDPWD"))
-		add_back_env(&g_shell.new_env, new_env("OLDPWD", 1, 1)); // exp 1
+		add_back_env(&g_shell.new_env, new_env("OLDPWD", 1)); // exp 1
 	edit_env_line(env, "PWD", pwd);
 	edit_env_line(env, "OLDPWD", oldpwd);
 }
@@ -65,11 +65,11 @@ void	ft_cd(char **argv)
 		ft_putstr_fd(": ", 2);
 		ft_putendl_fd(strerror(errno), 2);
 		g_shell.result = 1;
-		try_free(oldpwd);
+		tfree(oldpwd);
 		return ;
 	}
 	pwd = getcwd(NULL, 0);
 	edit_pwd(g_shell.new_env, pwd, oldpwd);
-	try_free(oldpwd);
-	try_free(pwd);
+	tfree(oldpwd);
+	tfree(pwd);
 }

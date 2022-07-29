@@ -121,5 +121,5 @@ void	pipes(int argc)
 		status_handler();
 		pipex.iter++;
 	}
-	try_free(pid);
+	tfree(pid);
 }

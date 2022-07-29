@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-void	try_free(void *target)
+void	tfree(void *target)
 {
 	if (target == NULL)
 		return ;
@@ -20,11 +20,11 @@ void	try_free(void *target)
 	target = NULL;
 }
 
-void	try_free3(void *a, void *b, void *c)
+void	tfree3(void *a, void *b, void *c)
 {
-	try_free(a);
-	try_free(b);
-	try_free(c);
+	tfree(a);
+	tfree(b);
+	tfree(c);
 }
 
 char	**free_2d_arr(char **arr)
@@ -36,11 +36,11 @@ char	**free_2d_arr(char **arr)
 		return (NULL);
 	while (arr[i] != NULL)
 	{
-		try_free(arr[i]);
+		tfree(arr[i]);
 		arr[i] = NULL;
 		i++;
 	}
-	try_free(arr);
+	tfree(arr);
 	arr = NULL;
 	return (arr);
 }

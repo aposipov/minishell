@@ -66,10 +66,10 @@ static int	redirect_create(t_list *tmp)
 				exit_error("Error malloc", -1);
 			if (help_redirect(str, fd) < 0)
 			{
-				try_free(str);
+				tfree(str);
 				return (-1);
 			}
-			try_free(str);
+			tfree(str);
 			tmp = tmp->next;
 		}
 		sup_dup(fd);

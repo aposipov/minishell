@@ -17,7 +17,7 @@ static void	signaled(int *pip, char *limiter)
 	ft_putchar_fd('\r', 2);
 	close(pip[0]);
 	close(pip[1]);
-	try_free(limiter);
+	tfree(limiter);
 }
 
 static void	limiter_child(int *pip, char *limiter)
@@ -31,7 +31,7 @@ static void	limiter_child(int *pip, char *limiter)
 		input = readline("> ");
 		if (!input || !ft_strncmp(input, limiter, ft_strlen(limiter) + 1))
 		{
-			try_free(input);
+			tfree(input);
 			exit(0);
 		}
 		ft_putendl_fd(input, pip[1]);
@@ -43,7 +43,7 @@ char	*limiter_handler(char *rd, char *limiter)
 	int		pip[2];
 	pid_t	pid;
 
-	try_free(rd);
+	tfree(rd);
 	pipe(pip);
 	pid = fork();
 	if (pid == 0)

@@ -82,6 +82,6 @@ void	parser(char const *input)
 		if (g_shell.signal != 0)
 			return ;
 		if (set_arg(tmp, &this_is_redirect) == -1)
-			try_free(tmp);
+			tfree(tmp);
 	}
 }

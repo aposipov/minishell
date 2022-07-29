@@ -35,7 +35,7 @@ static int	parsing(void)
 		return (-1);
 	if (ft_strlen(input) == 0)
 	{
-		try_free(input);
+		tfree(input);
 		input = NULL;
 		return (1);
 	}
@@ -44,7 +44,7 @@ static int	parsing(void)
 		parser(input);
 	else
 		return (1);
-	try_free(input);
+	tfree(input);
 	return (0);
 }
 

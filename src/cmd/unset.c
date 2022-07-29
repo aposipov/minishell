@@ -39,7 +39,7 @@ static void	del_env_line(t_env *env, char *key)
 	iterator = prev->next;
 	if (!ft_strncmp(prev->key, key, ft_strlen(key) + 1))
 	{
-		try_free3(prev->key, prev->value, prev);
+		tfree3(prev->key, prev->value, prev);
 		g_shell.new_env = iterator;
 		return ;
 	}
@@ -51,7 +51,7 @@ static void	del_env_line(t_env *env, char *key)
 	if (iterator && !ft_strncmp(iterator->key, key, ft_strlen(key) + 1))
 	{
 		prev->next = iterator->next;
-		try_free3(iterator->key, iterator->value, iterator);
+		tfree3(iterator->key, iterator->value, iterator);
 	}
 }
 

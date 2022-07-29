@@ -40,7 +40,7 @@ static char	*redirect_handler(char const *input, int *i, int const
 		*i += 1;
 		tmp = other_handler(input, i);
 		redirect = mod_strjoin_gnl(redirect, tmp);
-		try_free(tmp);
+		tfree(tmp);
 		if (set_redirect(redirect) == 0)
 			return (redirect);
 	}
@@ -81,7 +81,7 @@ char	*double_redirect_handler(char const *input, int *i, \
 		}
 		else
 			redirect = mod_strjoin_gnl(redirect, tmp);
-		try_free(tmp);
+		tfree(tmp);
 		if (set_redirect(redirect) == 0)
 			return (redirect);
 	}

@@ -78,12 +78,12 @@ void	edit_shlvl(t_env *env)
 	{
 		num = (int)ft_atoi(tmp->value);
 		num += 1;
-		try_free(tmp->value);
+		tfree(tmp->value);
 		tmp->value = ft_itoa(num);
 	}
 	else
 	{
-		tmp = new_env("SHLVL=1", 1, 1); // exp 1
+		tmp = new_env("SHLVL=1", 1); // exp 1
 		if (tmp == NULL)
 			exit_error("Error Malloc", -1);
 		add_back_env(&g_shell.new_env, tmp);
@@ -108,6 +108,6 @@ void	start_pwd(t_env *env)
 			exit(-1);
 		}
 		edit_env_line(env, "PWD", pwd);
-		try_free(pwd);
+		tfree(pwd);
 	}
 }

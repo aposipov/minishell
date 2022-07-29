@@ -79,7 +79,7 @@ static char	*quote_handler(char *input, int quote, int *i)
 	tmp_str = mod_strjoin_gnl(tmp_str, tmp_str3);
 	if (!tmp_str || !tmp_str2 || !tmp_str3)
 		exit_error("Malloc error", -1);
-	try_free3(input, tmp_str2, tmp_str3);
+	tfree3(input, tmp_str2, tmp_str3);
 	return (tmp_str);
 }
 
