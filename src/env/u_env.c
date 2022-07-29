@@ -83,7 +83,7 @@ void	edit_shlvl(t_env *env)
 	}
 	else
 	{
-		tmp = new_env("SHLVL=1", 1); // exp 1
+		tmp = new_env("SHLVL=1", 1);
 		if (tmp == NULL)
 			exit_error("Error Malloc", -1);
 		add_back_env(&g_shell.new_env, tmp);

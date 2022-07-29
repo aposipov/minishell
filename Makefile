@@ -65,4 +65,4 @@ re:			fclean all
 
 norm:
 			@norminette libft/ $(HEADER) $(SRC)
-			@echo -e "$(GREEN)\t\n Norminette is good!\n $(NC)"
+			@echo -e "$(GREEN)\t\n Norminette is OK!\n $(NC)"
