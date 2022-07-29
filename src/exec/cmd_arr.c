@@ -1,6 +1,14 @@
-//
-// Created by user on 11.07.22.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cmd_arr.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thsiu <lchristi@student.42.fr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/29 18:35:40 by lchristi          #+#    #+#             */
+/*   Updated: 2022/07/29 18:36:01 by lchristi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -50,13 +58,12 @@ static void	cmd_func(int cmd, char **cmd_ex)
 
 int	builtins(char **cmd)
 {
-	//int	i;
 	int	j;
 
-	//i = -1;
+	//j = -1; // was i
 	if (cmd != NULL)
 	{
-		j = get_cmd_char(cmd[0]);
+		j = get_cmd_char(cmd[0]); // cmd[0]
 		if (j != -1)
 		{
 			cmd_func(j, cmd);
@@ -66,4 +73,3 @@ int	builtins(char **cmd)
 	}
 	return (0);
 }
-

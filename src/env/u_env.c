@@ -1,6 +1,14 @@
-//
-// Created by user on 11.07.22.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   u_env.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lchristi <lchristi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/29 18:33:55 by lchristi          #+#    #+#             */
+/*   Updated: 2022/07/29 18:34:05 by lchristi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -22,11 +30,11 @@ static char	*str_create(t_env *env)
 {
 	char	*str;
 
-	str = ft_strjoin_gnl(ft_strdup(""), env->key);
+	str = mod_strjoin_gnl(ft_strdup(""), env->key);
 	if (env->value)
 	{
-		str = ft_strjoin_gnl(str, "=");
-		str = ft_strjoin_gnl(str, env->value);
+		str = mod_strjoin_gnl(str, "=");
+		str = mod_strjoin_gnl(str, env->value);
 	}
 	if (str == NULL)
 		exit_error("Error malloc", -1);

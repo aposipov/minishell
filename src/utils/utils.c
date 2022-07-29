@@ -1,7 +1,14 @@
-//
-// Created by user on 11.07.22.
-//
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lchristi <lchristi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/29 18:48:20 by lchristi          #+#    #+#             */
+/*   Updated: 2022/07/29 18:48:28 by lchristi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -36,7 +43,7 @@ int	tdup2(int fd, int fd2)
 	return (dupp);
 }
 
-char	*ft_strjoin_gnl(char *s1, char *s2)
+char	*mod_strjoin_gnl(char *s1, char *s2)
 {
 	size_t	size;
 	char	*join;

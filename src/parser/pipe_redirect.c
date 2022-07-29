@@ -1,6 +1,14 @@
-//
-// Created by user on 11.07.22.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipe_redirect.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lchristi <lchristi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/29 18:43:20 by lchristi          #+#    #+#             */
+/*   Updated: 2022/07/29 18:43:28 by lchristi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -31,7 +39,7 @@ static char	*redirect_handler(char const *input, int *i, int const
 		redirect = ft_substr(input, *i, 1);
 		*i += 1;
 		tmp = other_handler(input, i);
-		redirect = ft_strjoin_gnl(redirect, tmp);
+		redirect = mod_strjoin_gnl(redirect, tmp);
 		try_free(tmp);
 		if (set_redirect(redirect) == 0)
 			return (redirect);
@@ -72,7 +80,7 @@ char	*double_redirect_handler(char const *input, int *i, \
 				return (NULL);
 		}
 		else
-			redirect = ft_strjoin_gnl(redirect, tmp);
+			redirect = mod_strjoin_gnl(redirect, tmp);
 		try_free(tmp);
 		if (set_redirect(redirect) == 0)
 			return (redirect);

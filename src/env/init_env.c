@@ -1,6 +1,14 @@
-//
-// Created by user on 11.07.22.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_env.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lchristi <lchristi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/29 18:33:40 by lchristi          #+#    #+#             */
+/*   Updated: 2022/07/29 18:33:47 by lchristi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -115,5 +123,11 @@ t_env	*init_env(char **env)
 		add_back_env(&envs, new);
 		free(str);
 	}
+//	t_env *tmp = envs;
+//	while (envs) // check loop print env
+//	{
+//		printf("key = %s, value = %s\n", envs->key, envs->value );
+//		envs = envs->next;
+//	}
 	return (envs);
 }

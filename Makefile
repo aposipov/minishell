@@ -1,10 +1,21 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: lchristi <lchristi@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/07/29 18:11:15 by lchristi          #+#    #+#              #
+#    Updated: 2022/07/29 18:11:23 by lchristi         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 
 NAME = 		minishell
 LIBFT_A = 	libft/libft.a
 CC = 		gcc
 CFLAGS = 	-Wall -Wextra -Werror
-FLAGS =		-lreadline
+RLFLAG =		-lreadline
 INCFLAG = 	-I ./inc/\
  			-I ./libft/inc
 HEADER = 	./inc/
@@ -31,8 +42,8 @@ NC= \033[0;0m
 all:		$(LIBFT_A) $(NAME)
 
 $(NAME):	$(OBJ)
-			$(CC) $(CFLAGS) $(OBJ) $(LIBFT_A) $(FLAGS) -o $(NAME)
-			@echo -e "$(GREEN)\t\n Minishel compiled! \n $(NC)"
+			$(CC) $(CFLAGS) $(OBJ) $(LIBFT_A) $(RLFLAG) -o $(NAME)
+			@echo -e "$(GREEN)\t\n Minishel compiled!\n $(NC)"
 
 $(LIBFT_A):
 			make -C libft/
@@ -53,4 +64,5 @@ fclean:		clean
 re:			fclean all
 
 norm:
-			@norminette $(HEADER) $(SRC)
+			@norminette libft/ $(HEADER) $(SRC)
+			@echo -e "$(GREEN)\t\n Norminette is good!\n $(NC)"

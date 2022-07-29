@@ -1,12 +1,20 @@
-//
-// Created by user on 11.07.22.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   srt_cmd.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lchristi <lchristi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/29 18:47:05 by lchristi          #+#    #+#             */
+/*   Updated: 2022/07/29 18:47:27 by lchristi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
-t_command *command_new(void)
+t_command	*command_new(void)
 {
-	t_command *new;
+	t_command	*new;
 
 	new = malloc(sizeof(t_command));
 	if (new == NULL)
@@ -16,7 +24,7 @@ t_command *command_new(void)
 	return (new);
 }
 
-static int help_redirect(char *str, int *fd)
+static int	help_redirect(char *str, int *fd)
 {
 	if (!ft_strncmp(str, ">>", 2))
 		fd[1] = open(str + 2, O_WRONLY | O_CREAT | O_APPEND, 0666);
@@ -42,10 +50,10 @@ static int help_redirect(char *str, int *fd)
 	return (0);
 }
 
-static int redirect_create(t_list *tmp)
+static int	redirect_create(t_list *tmp)
 {
-	char *str;
-	int fd[2];
+	char	*str;
+	int		fd[2];
 
 	fd[0] = tdup(0);
 	fd[1] = tdup(1);
@@ -69,10 +77,10 @@ static int redirect_create(t_list *tmp)
 	return (0);
 }
 
-static char **argv_create(t_list *tmp_arg)
+static char	**argv_create(t_list *tmp_arg)
 {
-	char **cmd;
-	int i;
+	char	**cmd;
+	int		i;
 
 	i = 0;
 	cmd = NULL;
@@ -94,7 +102,7 @@ static char **argv_create(t_list *tmp_arg)
 	return (cmd);
 }
 
-char **set_command_struct(t_list *lst_cmd)
+char	**set_command_struct(t_list *lst_cmd)
 {
 	if (g_shell.env != NULL)
 		g_shell.env = free_2d_arr(g_shell.env);

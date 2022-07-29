@@ -9,7 +9,6 @@ add_subdirectory(./libft)
 
 add_executable(minishell
 		src/main.c
-#		src/0_init/input.c
 		src/init/signals.c
 		src/parser/pre_parsing.c src/parser/parsing.c src/parser/pipe_redirect.c
 		src/parser/limiter.c src/parser/post_parser.c src/parser/dollar.c

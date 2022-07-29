@@ -1,6 +1,14 @@
-//
-// Created by user on 11.07.22.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export_env.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lchristi <lchristi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/29 18:33:20 by lchristi          #+#    #+#             */
+/*   Updated: 2022/07/29 18:33:31 by lchristi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -41,16 +49,16 @@ static void	export_plus(t_env *env, char *key, char *value)
 	if (value)
 	{
 		if (tmp->value)
-			tmp->value = ft_strjoin_gnl(tmp->value, value);
+			tmp->value = mod_strjoin_gnl(tmp->value, value);
 		else
-			tmp->value = ft_strjoin_gnl(ft_strdup(""), value);
+			tmp->value = mod_strjoin_gnl(ft_strdup(""), value);
 	}
 	else
 		tmp->value = ft_strdup("");
 	if (tmp->value == NULL)
 		exit_error("Malloc error", -1);
 	tmp->env = 1;
-	//tmp->exp = 1;
+	tmp->exp = 1;
 }
 
 void	logic_export(int *flags, int i, t_env *env, char *arg)

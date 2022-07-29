@@ -1,12 +1,20 @@
-//
-// Created by user on 27.06.22.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lchristi <lchristi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/28 17:00:10 by lchristi          #+#    #+#             */
+/*   Updated: 2022/07/28 17:00:21 by lchristi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
-t_shell  g_shell = {}; //
+t_shell	g_shell = {}; // gv
 
-static int check_args(int  argc)
+static int	check_args(int  argc)
 {
 	if (argc != 1)
 	{
@@ -16,24 +24,10 @@ static int check_args(int  argc)
 	return (0);
 }
 
-//void	ctrl_c(int signal)
-//{
-//	if (signal == SIGINT)
-//	{
-//		ft_putchar_fd('\n', 2);
-//		rl_replace_line("", 2);
-//		rl_on_new_line();
-//		rl_redisplay();
-//		g_shell.result = signal - 1;
-//	}
-//}
-
 static int	parsing(void)
 {
 	char	*input;
 
-	//signal(SIGQUIT, SIG_IGN);
-	//signal(SIGINT, &ctrl_c);
 	init_signals();
 	g_shell.signal = 0;
 	input = readline(GREEN"minishell$ "NC);
@@ -59,8 +53,10 @@ static void	init_shell(int argc, char **argv, char **env)
 	t_command	*new;
 	t_list		*new_list;
 
-	(void)argc;
+	//(void)argc;
 	(void)argv;
+	if (check_args(argc))
+		exit(1);
 	g_shell.env = NULL;
 	if (env && env[0] != NULL)
 		g_shell.new_env = init_env(env);
@@ -78,15 +74,10 @@ static void	init_shell(int argc, char **argv, char **env)
 	ft_lstadd_back(&g_shell.cmd, (void *)new_list);
 }
 
-
-
 int	main(int argc, char **argv, char **env)
 {
 	int	status;
 
-	//rl_outstream = stderr; //WHY?
-	if(check_args(argc))
-		exit(1);
 	init_shell(argc, argv, env);
 	while (1)
 	{

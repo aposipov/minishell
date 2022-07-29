@@ -1,6 +1,14 @@
-//
-// Created by user on 11.07.22.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thsiu <lchristi@student.42.fr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/29 18:36:09 by lchristi          #+#    #+#             */
+/*   Updated: 2022/07/29 18:36:29 by lchristi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -68,8 +76,8 @@ static char	*correct_path(char **cmd)
 	path = find_path();
 	while (path && path[i])
 	{
-		path[i] = ft_strjoin_gnl(path[i], "/");
-		path[i] = ft_strjoin_gnl(path[i], cmd[0]);
+		path[i] = mod_strjoin_gnl(path[i], "/");
+		path[i] = mod_strjoin_gnl(path[i], cmd[0]);
 		if (path[i] == NULL)
 			exit_error("Error malloc", -1);
 		if (ft_access(path[i]) == 1)

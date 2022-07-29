@@ -1,6 +1,14 @@
-//
-// Created by user on 04.07.22.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lchristi <lchristi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/29 18:12:03 by lchristi          #+#    #+#             */
+/*   Updated: 2022/07/29 18:12:25 by lchristi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -15,9 +23,8 @@
 # include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-
-# include <dirent.h>  // DIR read
-# include <sys/types.h> //??
+# include <dirent.h>
+# include <sys/types.h>
 
 typedef struct s_command
 {
@@ -30,7 +37,7 @@ typedef struct s_env // int exp
 	char			*key;
 	char			*value;
 	int				env;
-	int 			exp;
+	int				exp;
 	struct s_env	*next;
 }				t_env;
 
@@ -53,21 +60,19 @@ typedef struct s_pipex
 	int		flag;
 }			t_pipex;
 
-extern t_shell g_shell;
+extern t_shell	g_shell;
 
-//int 	loop(char **env);
-int		pre_parser(char const *line);
-void	parser(char const *input);
-void	init_signals(void);
-char	*double_redirect_handler(char const *input, int *i, int
+int			pre_parser(char const *line);
+void		parser(char const *input);
+void		init_signals(void);
+char		*double_redirect_handler(char const *input, int *i, int \
 *this_is_redirect);
-void	pipe_handler(int *i);
-char	*other_handler(char const *input, int *i);
-char	*limiter_handler(char *rd, char *limiter);
-char	*clear_quotes(char *input);
-char	*dollar(char *input, int *i);
-void	tparent(void);
-
+void		pipe_handler(int *i);
+char		*other_handler(char const *input, int *i);
+char		*limiter_handler(char *rd, char *limiter);
+char		*clear_quotes(char *input);
+char		*dollar(char *input, int *i);
+void		tparent(void);
 
 /*utils*/
 void		try_free(void *target);
@@ -75,14 +80,14 @@ void		try_free3(void *a, void *b, void *c);
 char		**free_2d_arr(char **arr);
 void		exit_error(char *str, int code);
 void		cleaning(void);
-t_command 	*command_new(void);
-char 		**set_command_struct(t_list *lst_cmd);
+t_command	*command_new(void);
+char		**set_command_struct(t_list *lst_cmd);
 void		status_handler(void);
 int			tdup(int fd);
 int			tdup2(int fd, int fd2);
 void		err_msg(char *str);
 void		sup_dup(int *fd);
-char		*ft_strjoin_gnl(char *s1, char *s2); // peredelat
+char		*mod_strjoin_gnl(char *s1, char *s2); // peredelat
 
 // builtins
 void		ft_pwd(char **argv);
@@ -113,6 +118,5 @@ int			builtins(char **cmd);
 void		pipes(int argc);
 pid_t		*init_pipes(int argc, t_pipex *pipex, int *a, int *b);
 void		closer_pipes(int *a, int *b);
-
 
 #endif

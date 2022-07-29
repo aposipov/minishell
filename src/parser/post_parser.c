@@ -1,6 +1,14 @@
-//
-// Created by user on 11.07.22.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   post_parser.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lchristi <lchristi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/29 18:43:38 by lchristi          #+#    #+#             */
+/*   Updated: 2022/07/29 18:43:45 by lchristi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -68,9 +76,9 @@ static char	*quote_handler(char *input, int quote, int *i)
 	tmp_str2 = ft_substr(input, j, *i - j);
 	tmp_str3 = ft_strdup(input + (*i + 1));
 	tmp_str2 = quote_helper(tmp_str2, quote);
-	tmp_str = ft_strjoin_gnl(tmp_str, tmp_str2);
+	tmp_str = mod_strjoin_gnl(tmp_str, tmp_str2);
 	*i = (int)ft_strlen(tmp_str);
-	tmp_str = ft_strjoin_gnl(tmp_str, tmp_str3);
+	tmp_str = mod_strjoin_gnl(tmp_str, tmp_str3);
 	if (!tmp_str || !tmp_str2 || !tmp_str3)
 		exit_error("Malloc error", -1);
 	try_free3(input, tmp_str2, tmp_str3);
