@@ -1,5 +1,5 @@
 ## minishell
-
+:shell
 ### features
 `pipes`, `semicolons`, `escape sequences`, `enviroment variables`, `$?`, `~`, `redirections: > >> <`
 
